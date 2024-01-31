@@ -1,0 +1,39 @@
+<!-- app/templates/get_all_courses.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>All Courses</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Course Name</th>
+        <th>Department</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for course in courses %}
+        <tr>
+          <td>{{ course.course_id }}</td>
+          <td>{{ course.course_name }}</td>
+          <td>
+            {% if course.department %}
+              {{ course.department.department_name }}
+            {% else %}
+              N/A
+            {% endif %}
+          </td>
+          <td>
+            <a href="{{ url_for('courses.get_all_courses', course_id=course.course_id) }}" class="btn btn-info">View</a>
+            <a href="{{ url_for('courses.update_course_page', course_id=course.course_id) }}" class="btn btn-warning">Edit</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <a href="{{ url_for('index_bp.index') }}" class="btn btn-secondary">Back to Home</a>
+  <a href="{{ url_for('courses.create_course_page') }}" class="btn btn-primary">Add New Course</a>
+{% endblock %}

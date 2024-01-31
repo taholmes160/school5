@@ -1,0 +1,32 @@
+<!-- templates/update_student.html -->
+{% extends 'base.html' %}
+
+{% block title %}Update Student{% endblock %}
+
+{% block content %}
+    <h1 class="mb-4">Update Student</h1>
+    <form method="post" action="{{ url_for('student_bp.update_student', student_id=student_id) }}">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            <label for="student_fname">First Name:</label>
+            {{ form.student_fname(class="form-control") }}
+        </div>
+        <div class="form-group">
+            <label for="student_lname">Last Name:</label>
+            {{ form.student_lname(class="form-control") }}
+        </div>
+        <div class="form-group">
+            <label for="student_age">Age:</label>
+            {{ form.student_age(class="form-control") }}
+        </div>
+        <div class="form-group">
+            <label for="student_gender_id">Gender:</label>
+            {{ form.student_gender_id(class="form-control") }}
+        </div>
+        <div class="form-group">
+            <label for="student_level_id">Grade:</label>
+            {{ form.student_level_id(class="form-control") }}
+        </div>
+        <button type="submit" class="btn btn-primary">Update Student</button>
+    </form>
+{% endblock %}

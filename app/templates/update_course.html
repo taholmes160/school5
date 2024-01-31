@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Update Course{% endblock %}
+
+{% block content %}
+    <h1>Update Course</h1>
+    <form method="post" action="{{ url_for('courses.update_course_page', course_id=course.course_id) }}">
+        {{ form.hidden_tag() }}
+
+        <div class="mb-3">
+            {{ form.course_name.label(class="form-label") }}
+            {{ form.course_name(class="form-control") }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.department_id.label(class="form-label") }}
+            {{ form.department_id(class="form-control") }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Update Course</button>
+    </form>
+{% endblock %}
+

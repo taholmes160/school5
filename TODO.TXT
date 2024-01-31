@@ -1,0 +1,8 @@
+
+Add grade level to each course
+
+create sections route - can this be automated?  Ask for how many sections we want and automagically create them?
+Add filter to courses page (by grade or dept)
+Filter students - last name, grade, age
+student comments
+student pictures
