@@ -1,0 +1,23 @@
+<!-- templates/create_faculty.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Create Faculty</h1>
+
+<form action="{{ url_for('faculty.create_faculty') }}" method="POST">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+        <label for="faculty_fname">First Name</label>
+        {{ form.faculty_fname(class="form-control") }}
+    </div>
+    <div class="form-group">
+        <label for="faculty_lname">Last Name</label>
+        {{ form.faculty_lname(class="form-control") }}
+    </div>
+    <div class="form-group">
+        <label for="faculty_dept_id">Department</label>
+        {{ form.faculty_dept_id(class="form-control") }}
+    </div>
+    {{ form.submit(class="btn btn-primary") }}
+</form>
+{% endblock %}

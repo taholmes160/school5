@@ -2,7 +2,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, SubmitField, SelectField
 from wtforms.validators import DataRequired
-from models import Gender, GradeLevel
+from models import Gender, GradeLevel, Department
 
 class StudentForm(FlaskForm):
     student_fname = StringField('First Name', validators=[DataRequired()])
@@ -26,3 +26,11 @@ class CourseForm(FlaskForm):
 class DepartmentForm(FlaskForm):
     department_name = StringField('Department Name', validators=[DataRequired()])
     submit = SubmitField('Submit')
+    
+class FacultyForm(FlaskForm):
+    faculty_fname = StringField('First Name', validators=[DataRequired()])
+    faculty_lname = StringField('Last Name', validators=[DataRequired()])
+    faculty_dept_id = SelectField('Department', coerce=int)  # remove choices from here
+    submit = SubmitField('Submit')
+    
+    
