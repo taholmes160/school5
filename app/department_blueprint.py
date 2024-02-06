@@ -12,12 +12,21 @@ def departments():
 
 @departments_blueprint.route('/departments/new', methods=['GET', 'POST'])
 def create_department_page():
+    print("handling request")
     form = DepartmentForm()
     if form.validate_on_submit():
+        print("Form validated")
         department = Department(department_name=form.department_name.data)
-        db.session.add(department)
-        db.session.commit()
-        return redirect(url_for('departments.departments'))
+        try:
+            db.session.add(department)
+            db.session.commit()
+            print("Department added to database")
+            return redirect(url_for('departments.departments'))
+        except Exception as e:
+            print("Failed to add department: ", e)
+            db.session.rollback()
+    else:
+        print("Form errors: ", form.errors)
     return render_template('create_department_page.html', form=form)
 
 @departments_blueprint.route('/departments/<int:id>', methods=['GET', 'POST'])
