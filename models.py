@@ -56,4 +56,12 @@ class Department(db.Model):
     department_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     department_name = db.Column(db.String(50), nullable=False)
 
+class Faculty(db.Model):
+    __tablename__ = 'tbl_faculty'
+    faculty_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    faculty_fname = db.Column(db.String(45), nullable=False)
+    faculty_lname = db.Column(db.String(45), nullable=False)
+    faculty_dept_id = db.Column(db.Integer, db.ForeignKey('tbl_departments.department_id'), nullable=False)
 
+    # Define relationships
+    department = db.relationship('Department', foreign_keys=[faculty_dept_id])

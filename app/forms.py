@@ -21,3 +21,8 @@ class CourseForm(FlaskForm):
     department_id = SelectField('Department', coerce=int, validators=[DataRequired()])
     submit = SubmitField('Create Course')
 
+# forms.py
+
+class DepartmentForm(FlaskForm):
+    department_name = StringField('Department Name', validators=[DataRequired()])
+    submit = SubmitField('Submit')
