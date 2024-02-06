@@ -20,7 +20,8 @@ class Course(db.Model):
     course_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     course_name = db.Column(db.String(255), nullable=False)
     department_id = db.Column(db.Integer, db.ForeignKey('tbl_departments.department_id'), nullable=False)
-    sections = relationship('Section', backref='course', lazy=True)
+    department = db.relationship('Department', backref='courses')
+    sections = db.relationship('Section', backref='course', lazy=True)
 
 class Section(db.Model):
     __tablename__ = 'tbl_sections'

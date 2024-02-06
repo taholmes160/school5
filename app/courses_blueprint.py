@@ -8,7 +8,7 @@ courses_blueprint = Blueprint('courses', __name__)
 # Update the get_all_courses route
 @courses_blueprint.route('/courses', methods=['GET'])
 def get_all_courses():
-    courses = Course.query.options(db.joinedload('department')).all()
+    courses = Course.query.options(db.joinedload(Course.department)).all()
     return render_template('get_all_courses.html', courses=courses)
 
 # Render the create course page
