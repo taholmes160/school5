@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Faculty{% endblock %}
+
+{% block content %}
+    <h1 class="mb-4">Faculty List</h1>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Department</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for faculty in faculties|sort(attribute='faculty_lname') %}
+                    <tr>
+                        <td>{{ faculty.faculty_fname }}</td>
+                        <td>{{ faculty.faculty_lname }}</td>
+                        <td>{{ faculty.faculty_dept_id.department_name }}</td>
+                        <td>
+                            <a href="{{ url_for('faculty.update_faculty', faculty_id=faculty.faculty_id) }}" class="btn btn-primary btn-sm">Update</a>
+                            <form method="post" action="{{ url_for('faculty.delete_faculty', faculty_id=faculty.faculty_id) }}" style="display:inline;">
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this faculty member?')">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="{{ url_for('faculty.create_faculty') }}" class="btn btn-success btn-sm">Create New Faculty</a>
+        <a href="{{ url_for('index_bp.index') }}" class="btn btn-secondary btn-sm">Back to Home</a>
+    </div>
+{% endblock %}
