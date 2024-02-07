@@ -19,7 +19,7 @@
                     <tr>
                         <td>{{ faculty.faculty_fname }}</td>
                         <td>{{ faculty.faculty_lname }}</td>
-                        <td>{{ faculty.faculty_dept_id.department_name }}</td>
+                        <td>{{ faculty.department.department_name }}</td>  <!-- Corrected line -->
                         <td>
                             <a href="{{ url_for('faculty.update_faculty', faculty_id=faculty.faculty_id) }}" class="btn btn-primary btn-sm">Update</a>
                             <form method="post" action="{{ url_for('faculty.delete_faculty', faculty_id=faculty.faculty_id) }}" style="display:inline;">

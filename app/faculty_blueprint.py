@@ -9,7 +9,7 @@ faculty_blueprint = Blueprint('faculty', __name__)
 @faculty_blueprint.route('/faculty/new', methods=['GET', 'POST'])
 def create_faculty():
     form = FacultyForm()
-    form.faculty_dept_id.choices = [(d.department_id, d.department_name) for d in Department.query.all()]  # corrected attribute names
+    form.faculty_dept_id.choices = [(d.department_id, d.department_name) for d in Department.query.all()]
     if request.method == 'POST' and form.validate_on_submit():
         faculty = Faculty(
             faculty_fname=form.faculty_fname.data,
@@ -18,7 +18,10 @@ def create_faculty():
         )
         db.session.add(faculty)
         db.session.commit()
-        return redirect(url_for('faculty.list_faculty'))  # redirect to the faculty list page
+        if 'submit_and_add_another' in request.form:
+            return redirect(url_for('faculty.create_faculty'))  # redirect to the create faculty page
+        else:
+            return redirect(url_for('faculty.list_faculty'))  # redirect to the faculty list page
     return render_template('create_faculty.html', form=form)  # pass the form to the template
 
 

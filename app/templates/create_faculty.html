@@ -18,6 +18,7 @@
         <label for="faculty_dept_id">Department</label>
         {{ form.faculty_dept_id(class="form-control") }}
     </div>
-    {{ form.submit(class="btn btn-primary") }}
+    {{ form.submit(class="btn btn-primary", value="Save") }}
+    <input type="submit" name="submit_and_add_another" value="Save and Add Another" class="btn btn-primary" />
 </form>
 {% endblock %}
